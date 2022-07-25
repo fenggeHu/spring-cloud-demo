@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Map;
 
 /**
  * @Description:
@@ -31,6 +32,8 @@ public class EmailSendParam {
      * 其它相关数据 - 可用于渲染模板 - 使用json简化feign处理Map等数据类型问题
      */
     @ApiModelProperty("自定义数据 - 可用于渲染模板")
+    private Map<String, Object> data;
+
     private String json;
 
     @Email

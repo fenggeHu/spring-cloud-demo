@@ -39,6 +39,10 @@ public class FileService {
         Map<String, Object> data = new HashMap<>();
         data.put("name", "锋哥");
         data.put("age", 26);
+        // 表单提交方式和json提交方式没法直接混用，因为提交的数据格式机制是不一样的
+        // 当使用表单方式提交，可以把Java对象转成json格式
+//        param.setData(data);
+
         param.setJson(JsonUtils.toJson(data));
 
         return sendMessageClient.post(param);
