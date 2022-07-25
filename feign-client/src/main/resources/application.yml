@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: feign-client
+
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+message:
+  url: http://localhost:6050/message
+
+server:
+  port: 8000
+  use-forward-headers: true
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+api:
+  swagger:
+    enable: true
+    basePackage: fengge
+    title: 接口文档
+    description: 更多请咨询服务开发者
+    version: 0.1
+
+
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    fengge: debug
+    org.springframework: INFO
