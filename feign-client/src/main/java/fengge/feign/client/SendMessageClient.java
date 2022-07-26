@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @Description: spring cloud集成openfeign兼容性较好
  * @Author Jinfeng.hu  @Date 2022/7/21
  **/
-@FeignClient(name = "messageFeignService", url = "${message.url}")
+@FeignClient(name = "sendMessageClient", url = "${message.url}")
 public interface SendMessageClient {
     /**
      * Post test

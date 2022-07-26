@@ -1,7 +1,9 @@
 package fengge.feign.response;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @Description: 消息返回值
@@ -9,6 +11,8 @@ import lombok.Data;
  **/
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class MessageResponse {
     /**
      * 是否成功
