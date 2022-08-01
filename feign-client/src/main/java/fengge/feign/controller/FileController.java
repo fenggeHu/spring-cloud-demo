@@ -22,7 +22,7 @@ public class FileController {
         return fileService.sendWithAttachment(filename);
     }
     @PostMapping("/sendSms")
-    public MessageResponse sendSms() {
-        return fileService.sendSms();
+    public MessageResponse sendSms(String areaCode, String mobile, String bizType, String templateId) {
+        return fileService.sendSms(areaCode, mobile, bizType, templateId);
     }
 }

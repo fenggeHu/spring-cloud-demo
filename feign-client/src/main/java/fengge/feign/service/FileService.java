@@ -52,19 +52,18 @@ public class FileService {
         return sendMessageClient.sendMailWithAttachment(param);
     }
 
-    public MessageResponse sendSms() {
+    public MessageResponse sendSms(String areaCode, String mobile, String bizType, String templateId) {
         SmsSendParam param = new SmsSendParam();
         param.setRequestId(UUID.randomUUID().toString());
         param.setOrgId(0L);
-        param.setBusinessType("MAX_TEST_SC");
+        param.setBusinessType(bizType);
         param.setLanguage("zh_CN");
-        param.setNationCode("86");
-        param.setMobile("13600500001");
+        param.setNationCode(areaCode);
+        param.setMobile(mobile);
 
         Map<String, Object> data = new HashMap<>();
         param.setData(data);
-        data.put("name", "锋哥");
-        data.put("age", 26);
+        data.put("TEMPLATE_ID", templateId);
 
         MessageResponse response = sendMessageClient.sendSms(param);
         return response;
