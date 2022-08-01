@@ -2,6 +2,7 @@ package fengge.feign.service;
 
 import fengge.feign.client.SendMessageClient;
 import fengge.feign.param.EmailSendParam;
+import fengge.feign.param.SmsSendParam;
 import fengge.feign.response.MessageResponse;
 import fengge.utils.JsonUtils;
 import fengge.utils.MultipartFileUtil;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
@@ -30,6 +32,8 @@ public class FileService {
         param.setUserName("fengge");
         param.setRequestId(UUID.randomUUID().toString());
         param.setOrgId(0L);
+//        param.setLanguage("en_US");
+        param.setLanguage("zh_CN");
         param.setBusinessType("GET_MY_FREE_REPORT");
         if (!StringUtils.isEmpty(file)) {
             MultipartFile attachment = MultipartFileUtil.toMultipartFile(new File(file));
@@ -45,7 +49,24 @@ public class FileService {
 
         param.setJson(JsonUtils.toJson(data));
 
-        return sendMessageClient.post(param);
+        return sendMessageClient.sendMailWithAttachment(param);
     }
 
+    public MessageResponse sendSms() {
+        SmsSendParam param = new SmsSendParam();
+        param.setRequestId(UUID.randomUUID().toString());
+        param.setOrgId(0L);
+        param.setBusinessType("MAX_TEST_SC");
+        param.setLanguage("zh_CN");
+        param.setNationCode("86");
+        param.setMobile("13600500001");
+
+        Map<String, Object> data = new HashMap<>();
+        param.setData(data);
+        data.put("name", "锋哥");
+        data.put("age", 26);
+
+        MessageResponse response = sendMessageClient.sendSms(param);
+        return response;
+    }
 }

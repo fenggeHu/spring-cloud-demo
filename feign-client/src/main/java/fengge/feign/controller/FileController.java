@@ -21,4 +21,8 @@ public class FileController {
     public MessageResponse sendEmail(String filename) {
         return fileService.sendWithAttachment(filename);
     }
+    @PostMapping("/sendSms")
+    public MessageResponse sendSms() {
+        return fileService.sendSms();
+    }
 }

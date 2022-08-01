@@ -2,6 +2,7 @@ package fengge.feign.client;
 
 import feign.Param;
 import fengge.feign.param.EmailSendParam;
+import fengge.feign.param.SmsSendParam;
 import fengge.feign.response.MessageResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
@@ -26,4 +27,7 @@ public interface SendMessageClient {
 
     @RequestMapping(value = "/sendMailWithAttachment", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     MessageResponse sendMailWithAttachment(@Param("param") EmailSendParam param);
+
+    @RequestMapping(value = "/sendSms", method = RequestMethod.POST)
+    MessageResponse sendSms(@Param("param") SmsSendParam param);
 }
