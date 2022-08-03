@@ -6,6 +6,7 @@ import fengge.feign.param.SmsSendParam;
 import fengge.feign.response.MessageResponse;
 import fengge.utils.JsonUtils;
 import fengge.utils.MultipartFileUtil;
+import org.apache.commons.lang3.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -52,7 +53,7 @@ public class FileService {
         return sendMessageClient.sendMailWithAttachment(param);
     }
 
-    public MessageResponse sendSms(String areaCode, String mobile, String bizType, String templateId) {
+    public MessageResponse sendSms(String areaCode, String mobile, String bizType) {
         SmsSendParam param = new SmsSendParam();
         param.setRequestId(UUID.randomUUID().toString());
         param.setOrgId(0L);
@@ -63,7 +64,7 @@ public class FileService {
 
         Map<String, Object> data = new HashMap<>();
         param.setData(data);
-        data.put("TEMPLATE_ID", templateId);
+        data.put("code", RandomUtils.nextInt(1000, 10000));
 
         MessageResponse response = sendMessageClient.sendSms(param);
         return response;
